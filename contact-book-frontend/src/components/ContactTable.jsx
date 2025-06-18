@@ -111,20 +111,31 @@ export default function ContactTable() {
           </th>
         </thead>
         <tbody>
-          {contacts.map((contact) => (
-            <tr
-              key={contact.id}
-              className="hover:bg-blue-50 transition duration-600 ease-in-out  border-b border-gray-300 text-left"
-            >
-              <td className="h-5 px-4 py-3 text-sm">{contact.firstName}</td>
-              <td className="h-5 px-4 py-3 text-sm">{contact.lastName}</td>
-              <td className="h-5 px-4 py-3 text-sm">{contact.email}</td>
-              <td className="h-5 px-4 py-3 text-sm">{contact.phoneNumber}</td>
-              <td className="h-5 px-6 py-3 whitespace-nowrap text-center  font-medium">
-                <ContactActions />
+          {contacts.length === 0 ? (
+            <tr>
+              <td
+                colSpan="6"
+                className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+              >
+                No contacts found.
               </td>
             </tr>
-          ))}
+          ) : (
+            contacts.map((contact) => (
+              <tr
+                key={contact.id}
+                className="hover:bg-blue-50 transition duration-600 ease-in-out  border-b border-gray-300 text-left"
+              >
+                <td className="h-5 px-4 py-3 text-sm">{contact.firstName}</td>
+                <td className="h-5 px-4 py-3 text-sm">{contact.lastName}</td>
+                <td className="h-5 px-4 py-3 text-sm">{contact.email}</td>
+                <td className="h-5 px-4 py-3 text-sm">{contact.phoneNumber}</td>
+                <td className="h-5 px-6 py-3 whitespace-nowrap text-center  font-medium">
+                  <ContactActions />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
