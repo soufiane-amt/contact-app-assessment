@@ -33,8 +33,12 @@ function ContactActions() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-        if (isInView && menuRef.current && !menuRef.current.contains(event.target))
-            setInview(false);
+      if (
+        isInView &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      )
+        setInview(false);
     };
     document.addEventListener("mousedown", handleClickOutside);
   }, [isInView]);
@@ -57,16 +61,25 @@ function ContactActions() {
         </svg>
       </button>
       {isInView && (
-        <div ref={menuRef} className="absolute right-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  focus:outline-none">
+        <div
+          ref={menuRef}
+          className="absolute right-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  outline-none"
+        >
           <button
-            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            onClick={() => console.log("Edit clicked!")} 
+            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md outline-none "
+            onClick={() => {
+              console.log("Edit clicked!");
+              setInview(false);
+            }}
           >
             Edit
           </button>
           <button
-            className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150 rounded-b-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            onClick={() => console.log("Delete clicked!")}
+            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md outline-none "
+            onClick={() => {
+              console.log("Delete clicked!");
+              setInview(false);
+            }}
           >
             Delete
           </button>
