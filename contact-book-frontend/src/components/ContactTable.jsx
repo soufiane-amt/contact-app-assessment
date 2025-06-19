@@ -20,7 +20,196 @@ const contacts = [
     firstName: "Peter",
     lastName: "Jones",
     email: "peter.j@example.com",
-    phoneNumber: "098-765-4321",
+    phoneNumber: "111-222-3333",
+  },
+  {
+    id: 4,
+    firstName: "Emily",
+    lastName: "Brown",
+    email: "emily.brown@example.com",
+    phoneNumber: "222-333-4444",
+  },
+  {
+    id: 5,
+    firstName: "Michael",
+    lastName: "Taylor",
+    email: "michael.taylor@example.com",
+    phoneNumber: "333-444-5555",
+  },
+  {
+    id: 6,
+    firstName: "Sarah",
+    lastName: "Wilson",
+    email: "sarah.wilson@example.com",
+    phoneNumber: "444-555-6666",
+  },
+  {
+    id: 7,
+    firstName: "David",
+    lastName: "Lee",
+    email: "david.lee@example.com",
+    phoneNumber: "555-666-7777",
+  },
+  {
+    id: 8,
+    firstName: "Laura",
+    lastName: "Martin",
+    email: "laura.martin@example.com",
+    phoneNumber: "666-777-8888",
+  },
+  {
+    id: 9,
+    firstName: "James",
+    lastName: "Clark",
+    email: "james.clark@example.com",
+    phoneNumber: "777-888-9999",
+  },
+  {
+    id: 10,
+    firstName: "Olivia",
+    lastName: "Lewis",
+    email: "olivia.lewis@example.com",
+    phoneNumber: "888-999-0000",
+  },
+  {
+    id: 11,
+    firstName: "Ethan",
+    lastName: "Walker",
+    email: "ethan.walker@example.com",
+    phoneNumber: "999-000-1111",
+  },
+  {
+    id: 12,
+    firstName: "Sophia",
+    lastName: "Hall",
+    email: "sophia.hall@example.com",
+    phoneNumber: "000-111-2222",
+  },
+  {
+    id: 13,
+    firstName: "Daniel",
+    lastName: "Allen",
+    email: "daniel.allen@example.com",
+    phoneNumber: "111-222-3333",
+  },
+  {
+    id: 14,
+    firstName: "Grace",
+    lastName: "Young",
+    email: "grace.young@example.com",
+    phoneNumber: "222-333-4444",
+  },
+  {
+    id: 15,
+    firstName: "Henry",
+    lastName: "King",
+    email: "henry.king@example.com",
+    phoneNumber: "333-444-5555",
+  },
+  {
+    id: 16,
+    firstName: "Ava",
+    lastName: "Wright",
+    email: "ava.wright@example.com",
+    phoneNumber: "444-555-6666",
+  },
+  {
+    id: 17,
+    firstName: "Samuel",
+    lastName: "Scott",
+    email: "samuel.scott@example.com",
+    phoneNumber: "555-666-7777",
+  },
+  {
+    id: 18,
+    firstName: "Lily",
+    lastName: "Green",
+    email: "lily.green@example.com",
+    phoneNumber: "666-777-8888",
+  },
+  {
+    id: 19,
+    firstName: "Owen",
+    lastName: "Adams",
+    email: "owen.adams@example.com",
+    phoneNumber: "777-888-9999",
+  },
+  {
+    id: 20,
+    firstName: "Chloe",
+    lastName: "Baker",
+    email: "chloe.baker@example.com",
+    phoneNumber: "888-999-0000",
+  },
+  {
+    id: 21,
+    firstName: "Jack",
+    lastName: "Nelson",
+    email: "jack.nelson@example.com",
+    phoneNumber: "999-000-1111",
+  },
+  {
+    id: 22,
+    firstName: "Zoe",
+    lastName: "Carter",
+    email: "zoe.carter@example.com",
+    phoneNumber: "000-111-2222",
+  },
+  {
+    id: 23,
+    firstName: "Benjamin",
+    lastName: "Mitchell",
+    email: "ben.mitchell@example.com",
+    phoneNumber: "111-222-3333",
+  },
+  {
+    id: 24,
+    firstName: "Ella",
+    lastName: "Perez",
+    email: "ella.perez@example.com",
+    phoneNumber: "222-333-4444",
+  },
+  {
+    id: 25,
+    firstName: "Lucas",
+    lastName: "Roberts",
+    email: "lucas.roberts@example.com",
+    phoneNumber: "333-444-5555",
+  },
+  {
+    id: 26,
+    firstName: "Amelia",
+    lastName: "Turner",
+    email: "amelia.turner@example.com",
+    phoneNumber: "444-555-6666",
+  },
+  {
+    id: 27,
+    firstName: "Nathan",
+    lastName: "Phillips",
+    email: "nathan.phillips@example.com",
+    phoneNumber: "555-666-7777",
+  },
+  {
+    id: 28,
+    firstName: "Mia",
+    lastName: "Campbell",
+    email: "mia.campbell@example.com",
+    phoneNumber: "666-777-8888",
+  },
+  {
+    id: 29,
+    firstName: "Liam",
+    lastName: "Parker",
+    email: "liam.parker@example.com",
+    phoneNumber: "777-888-9999",
+  },
+  {
+    id: 30,
+    firstName: "Isabella",
+    lastName: "Evans",
+    email: "isabella.evans@example.com",
+    phoneNumber: "888-999-0000",
   },
 ];
 
@@ -163,41 +352,56 @@ function ContactRow({ contact }) {
 
 export default function ContactTable() {
   return (
-    <div className="shadow-lg rounded-md p-4 bg-white mt-5 md:w-full ">
-      <table className="w-full">
-        <thead className="border-b border-gray-300 text-left">
-          <th scope="col" className="px-4 py-2 text-sm "></th>
-          <th scope="col" className="px-4 py-2 text-sm ">
-            First Name
-          </th>
-          <th scope="col" className="px-4 py-2 text-sm ">
-            Last Name
-          </th>
-          <th scope="col" className="hidden md:table-cell px-4 py-2 text-sm ">
-            Email
-          </th>
-          <th scope="col" className="hidden md:table-cell px-4 py-2 text-sm ">
-            Phone Number
-          </th>
-          <th scope="col" className="hidden md:table-cell px-4 py-2 text-sm ">
-            Actions
-          </th>
-        </thead>
-        <tbody>
-          {contacts.length === 0 ? (
+    <div className="shadow-lg rounded-md bg-white mt-5 md:w-full overflow-hidden">
+      <div className="max-h-[500px] overflow-y-auto w-full custom-scrollbar p-4">
+        <table className="w-full">
+          <thead className="border-b border-gray-300 text-left">
             <tr>
-              <td
-                colSpan="6"
-                className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+              <th scope="col" className="px-4 py-2 text-sm"></th>
+              <th scope="col" className="px-4 py-2 text-sm">
+                First Name
+              </th>
+              <th scope="col" className="px-4 py-2 text-sm">
+                Last Name
+              </th>
+              <th
+                scope="col"
+                className="hidden md:table-cell px-4 py-2 text-sm"
               >
-                No contacts found.
-              </td>
+                Email
+              </th>
+              <th
+                scope="col"
+                className="hidden md:table-cell px-4 py-2 text-sm"
+              >
+                Phone Number
+              </th>
+              <th
+                scope="col"
+                className="hidden md:table-cell px-4 py-2 text-sm"
+              >
+                Actions
+              </th>
             </tr>
-          ) : (
-            contacts.map((contact) => <ContactRow contact={contact} />)
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {contacts.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="6"
+                  className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+                >
+                  No contacts found.
+                </td>
+              </tr>
+            ) : (
+              contacts.map((contact) => (
+                <ContactRow key={contact.id} contact={contact} />
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
