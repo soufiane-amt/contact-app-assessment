@@ -3,13 +3,61 @@ import ContactTable from "./ContactTable";
 import SearchField from "./SearchField";
 
 function ContactFormModal({ handleToggleModal }) {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = "First Name is required";
+    if (!formData.lastName) newErrors.lastName = "Last Name is required";
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email address is invalid";
+    }
+    if (
+      !formData.phoneNumber || (formData.phoneNumber &&
+      !/^\+?[0-9\s\-()]{7,20}$/.test(formData.phoneNumber))
+    ) {
+      newErrors.phoneNumber = "Phone number is invalid";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleTyping = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      console.log(formData);
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
+        address: "",
+      });
+      handleToggleModal()
+    } else console.log("Error!");
+  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-2 p-4 ">
       <div className="bg-white rounded-4xl shadow-xl w-full max-w-md p-6 sm:p-8 relative transform transition-all sm:my-8 sm:align-middle">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Add New Contact
         </h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="firstName"
@@ -21,8 +69,13 @@ function ContactFormModal({ handleToggleModal }) {
               type="text"
               name="firstName"
               id="firstName"
+              value={formData.firstName}
+              onChange={handleTyping}
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-[#5c4d95] focus:border-[#5c4d95] sm:text-sm`}
             />
+            {errors.firstName && (
+              <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>
+            )}
           </div>
           <div>
             <label
@@ -35,8 +88,13 @@ function ContactFormModal({ handleToggleModal }) {
               type="text"
               name="lastName"
               id="lastName"
+              value={formData.lastName}
+              onChange={handleTyping}
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-[#5c4d95] focus:border-[#5c4d95] sm:text-sm `}
             />
+            {errors.lastName && (
+              <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>
+            )}
           </div>
           <div>
             <label
@@ -49,8 +107,13 @@ function ContactFormModal({ handleToggleModal }) {
               type="email"
               name="email"
               id="email"
+              value={formData.email}
+              onChange={handleTyping}
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-[#5c4d95] focus:border-[#5c4d95] sm:text-sm`}
             />
+            {errors.email && (
+              <p className="mt-1 text-xs text-red-500">{errors.email}</p>
+            )}
           </div>
           <div>
             <label
@@ -63,8 +126,13 @@ function ContactFormModal({ handleToggleModal }) {
               type="text"
               name="phoneNumber"
               id="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleTyping}
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-[#5c4d95] focus:border-[#5c4d95] sm:text-sm`}
             />
+            {errors.phoneNumber && (
+              <p className="mt-1 text-xs text-red-500">{errors.phoneNumber}</p>
+            )}
           </div>
           <div className="flex justify-end space-x-3 mt-6">
             <button
@@ -75,7 +143,6 @@ function ContactFormModal({ handleToggleModal }) {
               Cancel
             </button>
             <button
-              onClick={handleToggleModal}
               type="submit"
               className="px-4 py-2 border border-transparent rounded-2xl shadow-sm text-sm font-medium text-white bg-[#5c4d95] hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
             >
