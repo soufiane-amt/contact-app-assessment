@@ -20,7 +20,7 @@ export default function SearchField() {
 
       <div>
         <input
-          className="w-full h-15 px-13 rounded-4xl bg-gray "
+          className="w-full h-13 px-13 rounded-4xl bg-gray bg-[#9595c5] text-gray-50"
           type="text"
           placeholder="Search contacts"
         />
