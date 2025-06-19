@@ -2,10 +2,10 @@ import { useState } from "react";
 import ContactTable from "./ContactTable";
 import SearchField from "./SearchField";
 
-function ContactFormModal() {
+function ContactFormModal({ handleToggleModal }) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-2 p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6 sm:p-8 relative transform transition-all sm:my-8 sm:align-middle">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-2 p-4 ">
+      <div className="bg-white rounded-4xl shadow-xl w-full max-w-md p-6 sm:p-8 relative transform transition-all sm:my-8 sm:align-middle">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Add New Contact
         </h2>
@@ -57,7 +57,7 @@ function ContactFormModal() {
               htmlFor="phoneNumber"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Phone Number
+              Phone Number <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -68,14 +68,16 @@ function ContactFormModal() {
           </div>
           <div className="flex justify-end space-x-3 mt-6">
             <button
+              onClick={handleToggleModal}
               type="button"
-              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
+              className="px-4 py-2 border border-gray-300 rounded-2xl shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
             >
               Cancel
             </button>
             <button
+              onClick={handleToggleModal}
               type="submit"
-              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#5c4d95] hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
+              className="px-4 py-2 border border-transparent rounded-2xl shadow-sm text-sm font-medium text-white bg-[#5c4d95] hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
             >
               Add Contact
             </button>
@@ -90,8 +92,8 @@ export default function ContactListPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggleModal = () => {
-    setIsModalOpen((prev)=> !prev)
-  }
+    setIsModalOpen((prev) => !prev);
+  };
   return (
     <div>
       <div className="relative">
@@ -131,7 +133,7 @@ export default function ContactListPage() {
               className=" bg-[#5c4d95] text-white w-20 h-20 rounded-full text-4xl
              flex items-center justify-center
                shadow-xl outline-none cursor-pointer hover:bg-violet-900 transition-colors duration-200 ease-in-out"
-               onClick= {handleToggleModal}
+              onClick={handleToggleModal}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +150,11 @@ export default function ContactListPage() {
           </div>
         </div>
       </div>
-      <div>{isModalOpen && <ContactFormModal/>}</div>
+      <div>
+        {isModalOpen && (
+          <ContactFormModal handleToggleModal={handleToggleModal} />
+        )}
+      </div>
     </div>
   );
 }
