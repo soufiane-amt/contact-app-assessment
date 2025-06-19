@@ -163,7 +163,7 @@ function ContactRow({ contact }) {
 
 export default function ContactTable() {
   return (
-    <div className="shadow-lg rounded-md p-4 bg-white mt-5 md:w-full">
+    <div className="shadow-lg rounded-md p-4 bg-white mt-5 md:w-full ">
       <table className="w-full">
         <thead className="border-b border-gray-300 text-left">
           <th scope="col" className="px-4 py-2 text-sm "></th>
