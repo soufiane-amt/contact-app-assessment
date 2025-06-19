@@ -100,13 +100,13 @@ export default function ContactTable() {
           <th scope="col" className="px-4 py-2 text-sm ">
             Last Name
           </th>
-          <th scope="col" className="px-4 py-2 text-sm ">
+          <th scope="col" className="hidden md:table-cell px-4 py-2 text-sm ">
             Email
           </th>
-          <th scope="col" className="px-4 py-2 text-sm ">
+          <th scope="col" className="hidden md:table-cell px-4 py-2 text-sm ">
             Phone Number
           </th>
-          <th scope="col" className="px-4 py-2 text-sm ">
+          <th scope="col" className="hidden md:table-cell px-4 py-2 text-sm ">
             Actions
           </th>
         </thead>
@@ -128,9 +128,9 @@ export default function ContactTable() {
               >
                 <td className="h-5 px-4 py-3 text-sm">{contact.firstName}</td>
                 <td className="h-5 px-4 py-3 text-sm">{contact.lastName}</td>
-                <td className="h-5 px-4 py-3 text-sm">{contact.email}</td>
-                <td className="h-5 px-4 py-3 text-sm">{contact.phoneNumber}</td>
-                <td className="h-5 px-6 py-3 whitespace-nowrap text-center  font-medium">
+                <td className="hidden md:table-cell h-5 px-4 py-3 text-sm">{contact.email}</td>
+                <td className="hidden md:table-cell h-5 px-4 py-3 text-sm">{contact.phoneNumber}</td>
+                <td className=" h-5 px-6 py-3 whitespace-nowrap text-center  font-medium">
                   <ContactActions />
                 </td>
               </tr>
