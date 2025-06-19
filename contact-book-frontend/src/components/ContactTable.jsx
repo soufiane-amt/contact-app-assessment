@@ -44,7 +44,7 @@ function ContactActions() {
   }, [isInView]);
 
   return (
-    <div className="relative">
+    <div className="relative right-5">
       <button
         className="cursor-pointer"
         onClick={() => {
@@ -91,9 +91,9 @@ function ContactActions() {
 
 export default function ContactTable() {
   return (
-    <div className="shadow-lg rounded-lg p-4 bg-white">
+    <div className="shadow-lg rounded-md p-4 bg-white mt-5 md:w-full">
       <table className="w-full">
-        <thead className="bg-gray-50  border-b border-gray-300 text-left">
+        <thead className="border-b border-gray-300 text-left">
           <th scope="col" className="px-4 py-2 text-sm ">
             First Name
           </th>

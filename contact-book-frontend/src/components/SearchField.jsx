@@ -3,7 +3,7 @@ export default function SearchField() {
     <div className="relative">
       <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
         <svg
-          className="h-5 w-5 text-gray-400"
+          className="h-5 w-5 text-gray-50"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -20,7 +20,7 @@ export default function SearchField() {
 
       <div>
         <input
-          className="w-full h-13 px-13 rounded-4xl bg-gray bg-[#9595c5] text-gray-50"
+          className="w-full h-13 px-13 rounded-4xl  bg-[#9595c5] text-gray-50 outline-none"
           type="text"
           placeholder="Search contacts"
         />
