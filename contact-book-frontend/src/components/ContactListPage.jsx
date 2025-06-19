@@ -10,7 +10,7 @@ function ContactFormModal({ handleToggleModal }) {
     email: "",
   });
   const [errors, setErrors] = useState({});
-
+  const [isLoading, setIsLoading] = useState(false);
   const validate = () => {
     const newErrors = {};
     if (!formData.firstName) newErrors.firstName = "First Name is required";
@@ -21,8 +21,9 @@ function ContactFormModal({ handleToggleModal }) {
       newErrors.email = "Email address is invalid";
     }
     if (
-      !formData.phoneNumber || (formData.phoneNumber &&
-      !/^\+?[0-9\s\-()]{7,20}$/.test(formData.phoneNumber))
+      !formData.phoneNumber ||
+      (formData.phoneNumber &&
+        !/^\+?[0-9\s\-()]{7,20}$/.test(formData.phoneNumber))
     ) {
       newErrors.phoneNumber = "Phone number is invalid";
     }
@@ -38,6 +39,7 @@ function ContactFormModal({ handleToggleModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+      setIsLoading(true)
       console.log(formData);
 
       setFormData({
@@ -47,12 +49,14 @@ function ContactFormModal({ handleToggleModal }) {
         phoneNumber: "",
         address: "",
       });
-      handleToggleModal()
     } else console.log("Error!");
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-2 p-4 ">
+    <div
+      className="fixed inset-0 bg-black  flex justify-center items-center z-2 p-4 "
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.85)" }}
+    >
       <div className="bg-white rounded-4xl shadow-xl w-full max-w-md p-6 sm:p-8 relative transform transition-all sm:my-8 sm:align-middle">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Add New Contact
@@ -136,17 +140,45 @@ function ContactFormModal({ handleToggleModal }) {
           </div>
           <div className="flex justify-end space-x-3 mt-6">
             <button
-              onClick={handleToggleModal}
               type="button"
-              className="px-4 py-2 border border-gray-300 rounded-2xl shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
+              onClick={handleToggleModal}
+              disabled={isLoading} // Disable cancel button during loading
+              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 border border-transparent rounded-2xl shadow-sm text-sm font-medium text-white bg-[#5c4d95] hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
+              disabled={isLoading} // Disable submit button during loading
+              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#5c4d95] hover:bg-violet-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5c4d95]"
             >
-              Add Contact
+              {isLoading ? (
+                <span className="flex items-center">
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Adding...
+                </span>
+              ) : (
+                "Add Contact"
+              )}
             </button>
           </div>
         </form>

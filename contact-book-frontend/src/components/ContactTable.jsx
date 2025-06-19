@@ -282,7 +282,7 @@ function ContactRow({ contact }) {
     <>
       <tr
         key={contact.id}
-        className="hover:bg-blue-50 transition duration-600 ease-in-out  border-b border-gray-300 text-left"
+        className={`hover:bg-blue-50 transition duration-600 ease-in-out  border-b border-gray-300 text-left ${contact.id % 2 === 0 ? "bg-white" : "bg-gray-50"}`}
       >
         <td className="w-1 h-1">
           <button
