@@ -1,15 +1,15 @@
 import "./App.css";
-import ContactFormModal from "./components/ContactFormModal";
-import ContactListPage from "./components/ContactListPage";
+import ContactFormPage from "./pages/ContactFormPage";
+import ContactHomePage from "./pages/ContactHomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ContactListPage />} />
-        <Route path="/contact" element={<ContactFormModal />} />
-        <Route path="/contact/:id" element={<ContactFormModal />} />
+        <Route path="/" element={<ContactHomePage />} />
+        <Route path="/contact" element={<ContactFormPage />} />
+        <Route path="/contact/:id" element={<ContactFormPage />} />
       </Routes>
     </BrowserRouter>
   );

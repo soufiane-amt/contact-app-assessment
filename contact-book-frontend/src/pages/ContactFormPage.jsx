@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { API_BASE_URL } from "./ContactListPage";
+import { API_BASE_URL } from "./ContactHomePage";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function ContactFormModal() {
+export default function ContactFormPage() {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -228,7 +228,7 @@ export default function ContactFormModal() {
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full text-center">
             <h3 className="text-xl font-bold text-red-600 mb-4">Error!</h3>
             <p className="text-gray-700 mb-6">
-              Failed to add contact. Please try again.
+              Failed to add contact. The contact already exists.
             </p>
             <button
               onClick={closeErrorModal}

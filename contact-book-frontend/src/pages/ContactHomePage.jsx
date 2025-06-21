@@ -1,24 +1,27 @@
-import { useEffect, useState } from "react";
-import ContactTable from "./ContactTable";
-import SearchField from "./SearchField";
+import { useCallback, useEffect, useState } from "react";
+import ContactTable from "../components/ContactTable/ContactTable";
+import SearchField from "../components/SearchField";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 export const API_BASE_URL = "http://localhost:8080/api/contacts";
 
-export default function ContactListPage() {
+export default function ContactHomePage() {
   const [contacts, setContacts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-     axios.get(API_BASE_URL).then((response) => {
+  const fetchContacts = useCallback(() =>{
+    axios.get(API_BASE_URL).then((response) => {
       setContacts(response.data);
-    });
-  }, [contacts]);
+    })}, [])
+
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
+
 
   const handleToggleModal = () => {
-    navigate('/contact')
+    navigate("/contact");
   };
   return (
     <div>
@@ -50,7 +53,7 @@ export default function ContactListPage() {
             <SearchField />
           </div>
           <div className="absolute top-20 md:right-4 right-0 w-5/5 md:w-5/6 ">
-            <ContactTable contacts={contacts}/>
+            <ContactTable contacts={contacts} fetchContacts={fetchContacts}/>
           </div>
         </div>
         <div>
