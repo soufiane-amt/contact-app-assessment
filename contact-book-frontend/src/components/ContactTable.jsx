@@ -1,23 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "./ContactListPage";
+import { useNavigate } from "react-router-dom";
 
 
 function ContactActions({itemId}) {
-  const [isInView, setInview] = useState(false);
+  const [isActionInView, setActionInView] = useState(false);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        isInView &&
+        isActionInView &&
         menuRef.current &&
         !menuRef.current.contains(event.target)
       )
-        setInview(false);
+        setActionInView(false);
     };
     document.addEventListener("mousedown", handleClickOutside);
-  }, [isInView]);
+  }, [isActionInView]);
+
+  const handleUpdateItem = async () =>{
+        navigate(`/contact/${itemId}`)
+  }
 
   const handleDeleteItem = async () =>{
         await axios.delete(`${API_BASE_URL}/${itemId}`)
@@ -28,7 +34,7 @@ function ContactActions({itemId}) {
       <button
         className="cursor-pointer"
         onClick={() => {
-          setInview((prevInview) => !prevInview);
+          setActionInView((prevInview) => !prevInview);
         }}
       >
         <svg
@@ -40,17 +46,14 @@ function ContactActions({itemId}) {
           <path d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4z"></path>
         </svg>
       </button>
-      {isInView && (
+      {isActionInView && (
         <div
           ref={menuRef}
           className="absolute left-15 bottom-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  outline-none"
         >
           <button
             className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md outline-none "
-            onClick={() => {
-              console.log("Edit clicked!");
-              setInview(false);
-            }}
+            onClick={handleUpdateItem}
           >
             Edit
           </button>

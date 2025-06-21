@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "./ContactListPage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ContactFormModal() {
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -14,6 +15,21 @@ export default function ContactFormModal() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (id) {
+      const fetchContact = async () => {
+        try {
+          const res = await axios.get(`${API_BASE_URL}/${id}`);
+          setFormData(res.data);
+        } catch (error) {
+          console.error("Failed to add contact:", error);
+          setShowErrorModal(true);
+        }
+      };
+      fetchContact();
+    }
+  }, [id]);
 
   const validate = () => {
     const newErrors = {};
@@ -64,9 +80,9 @@ export default function ContactFormModal() {
     }
   };
 
-  const closeErrorModal = () =>{
+  const closeErrorModal = () => {
     setShowErrorModal(false);
-  }
+  };
 
   const navigateHome = () => {
     navigate("/");
@@ -75,7 +91,7 @@ export default function ContactFormModal() {
     <div className="fixed inset-0 bg-white  flex justify-center items-center z-2 p-4 ">
       <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 md:min-w-2/3 min-w-full">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Add New Contact
+          {id ? "Update Contact" : "Add New Contact"}
         </h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="md:flex md:gap-x-4">
@@ -196,10 +212,12 @@ export default function ContactFormModal() {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Adding...
+                  {id ? "Updating..." : "Adding..."}
                 </span>
+              ) : id ? (
+                "Update contact"
               ) : (
-                "Add Contact"
+                "Add contact"
               )}
             </button>
           </div>

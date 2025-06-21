@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ContactTable from "./ContactTable";
 import SearchField from "./SearchField";
-import ContactFormModal from "./ContactFormModal";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
@@ -14,10 +13,9 @@ export default function ContactListPage() {
 
   useEffect(() => {
      axios.get(API_BASE_URL).then((response) => {
-      console.log(response.data);
       setContacts(response.data);
     });
-  });
+  }, [contacts]);
 
   const handleToggleModal = () => {
     navigate('/contact')

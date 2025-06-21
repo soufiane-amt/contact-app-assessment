@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ContactListPage />} />
         <Route path="/contact" element={<ContactFormModal />} />
+        <Route path="/contact/:id" element={<ContactFormModal />} />
       </Routes>
     </BrowserRouter>
   );
