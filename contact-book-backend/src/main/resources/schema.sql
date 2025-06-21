@@ -3,5 +3,5 @@ CREATE TABLE contacts (
     first_name VARCHAR(255) NOT NULL,                       -- First name (required)
     last_name VARCHAR(255) NOT NULL,                        -- Last name (required)
     email VARCHAR(255) NOT NULL UNIQUE,                     -- Email (required and unique)
-    phone_number VARCHAR(50),                               -- Phone number (optional)
+    phone_number VARCHAR(50)                          -- Phone number (optional)
 );
