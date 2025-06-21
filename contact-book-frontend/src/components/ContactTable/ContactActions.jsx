@@ -49,7 +49,7 @@ export default function ContactActions({ itemId, fetchContacts }) {
       {isActionInView && (
         <div
           ref={menuRef}
-          className="absolute left-15 bottom-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  outline-none"
+          className="absolute md:left-15 bottom-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  outline-none"
         >
           <button
             className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md outline-none "
