@@ -1,219 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "./ContactListPage";
 
-const contacts = [
-  {
-    id: 1,
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phoneNumber: "123-456-7890",
-  },
-  {
-    id: 2,
-    firstName: "Jane",
-    lastName: "Smith",
-    email: "jane.smith@example.com",
-    phoneNumber: "098-765-4321",
-  },
-  {
-    id: 3,
-    firstName: "Peter",
-    lastName: "Jones",
-    email: "peter.j@example.com",
-    phoneNumber: "111-222-3333",
-  },
-  {
-    id: 4,
-    firstName: "Emily",
-    lastName: "Brown",
-    email: "emily.brown@example.com",
-    phoneNumber: "222-333-4444",
-  },
-  {
-    id: 5,
-    firstName: "Michael",
-    lastName: "Taylor",
-    email: "michael.taylor@example.com",
-    phoneNumber: "333-444-5555",
-  },
-  {
-    id: 6,
-    firstName: "Sarah",
-    lastName: "Wilson",
-    email: "sarah.wilson@example.com",
-    phoneNumber: "444-555-6666",
-  },
-  {
-    id: 7,
-    firstName: "David",
-    lastName: "Lee",
-    email: "david.lee@example.com",
-    phoneNumber: "555-666-7777",
-  },
-  {
-    id: 8,
-    firstName: "Laura",
-    lastName: "Martin",
-    email: "laura.martin@example.com",
-    phoneNumber: "666-777-8888",
-  },
-  {
-    id: 9,
-    firstName: "James",
-    lastName: "Clark",
-    email: "james.clark@example.com",
-    phoneNumber: "777-888-9999",
-  },
-  {
-    id: 10,
-    firstName: "Olivia",
-    lastName: "Lewis",
-    email: "olivia.lewis@example.com",
-    phoneNumber: "888-999-0000",
-  },
-  {
-    id: 11,
-    firstName: "Ethan",
-    lastName: "Walker",
-    email: "ethan.walker@example.com",
-    phoneNumber: "999-000-1111",
-  },
-  {
-    id: 12,
-    firstName: "Sophia",
-    lastName: "Hall",
-    email: "sophia.hall@example.com",
-    phoneNumber: "000-111-2222",
-  },
-  {
-    id: 13,
-    firstName: "Daniel",
-    lastName: "Allen",
-    email: "daniel.allen@example.com",
-    phoneNumber: "111-222-3333",
-  },
-  {
-    id: 14,
-    firstName: "Grace",
-    lastName: "Young",
-    email: "grace.young@example.com",
-    phoneNumber: "222-333-4444",
-  },
-  {
-    id: 15,
-    firstName: "Henry",
-    lastName: "King",
-    email: "henry.king@example.com",
-    phoneNumber: "333-444-5555",
-  },
-  {
-    id: 16,
-    firstName: "Ava",
-    lastName: "Wright",
-    email: "ava.wright@example.com",
-    phoneNumber: "444-555-6666",
-  },
-  {
-    id: 17,
-    firstName: "Samuel",
-    lastName: "Scott",
-    email: "samuel.scott@example.com",
-    phoneNumber: "555-666-7777",
-  },
-  {
-    id: 18,
-    firstName: "Lily",
-    lastName: "Green",
-    email: "lily.green@example.com",
-    phoneNumber: "666-777-8888",
-  },
-  {
-    id: 19,
-    firstName: "Owen",
-    lastName: "Adams",
-    email: "owen.adams@example.com",
-    phoneNumber: "777-888-9999",
-  },
-  {
-    id: 20,
-    firstName: "Chloe",
-    lastName: "Baker",
-    email: "chloe.baker@example.com",
-    phoneNumber: "888-999-0000",
-  },
-  {
-    id: 21,
-    firstName: "Jack",
-    lastName: "Nelson",
-    email: "jack.nelson@example.com",
-    phoneNumber: "999-000-1111",
-  },
-  {
-    id: 22,
-    firstName: "Zoe",
-    lastName: "Carter",
-    email: "zoe.carter@example.com",
-    phoneNumber: "000-111-2222",
-  },
-  {
-    id: 23,
-    firstName: "Benjamin",
-    lastName: "Mitchell",
-    email: "ben.mitchell@example.com",
-    phoneNumber: "111-222-3333",
-  },
-  {
-    id: 24,
-    firstName: "Ella",
-    lastName: "Perez",
-    email: "ella.perez@example.com",
-    phoneNumber: "222-333-4444",
-  },
-  {
-    id: 25,
-    firstName: "Lucas",
-    lastName: "Roberts",
-    email: "lucas.roberts@example.com",
-    phoneNumber: "333-444-5555",
-  },
-  {
-    id: 26,
-    firstName: "Amelia",
-    lastName: "Turner",
-    email: "amelia.turner@example.com",
-    phoneNumber: "444-555-6666",
-  },
-  {
-    id: 27,
-    firstName: "Nathan",
-    lastName: "Phillips",
-    email: "nathan.phillips@example.com",
-    phoneNumber: "555-666-7777",
-  },
-  {
-    id: 28,
-    firstName: "Mia",
-    lastName: "Campbell",
-    email: "mia.campbell@example.com",
-    phoneNumber: "666-777-8888",
-  },
-  {
-    id: 29,
-    firstName: "Liam",
-    lastName: "Parker",
-    email: "liam.parker@example.com",
-    phoneNumber: "777-888-9999",
-  },
-  {
-    id: 30,
-    firstName: "Isabella",
-    lastName: "Evans",
-    email: "isabella.evans@example.com",
-    phoneNumber: "888-999-0000",
-  },
-];
 
-function ContactActions() {
+function ContactActions({itemId}) {
   const [isInView, setInview] = useState(false);
   const menuRef = useRef(null);
 
@@ -229,8 +19,12 @@ function ContactActions() {
     document.addEventListener("mousedown", handleClickOutside);
   }, [isInView]);
 
+  const handleDeleteItem = async () =>{
+        await axios.delete(`${API_BASE_URL}/${itemId}`)
+  }
+
   return (
-    <div className="relative right-5">
+    <div className="relative right-5 ">
       <button
         className="cursor-pointer"
         onClick={() => {
@@ -249,7 +43,7 @@ function ContactActions() {
       {isInView && (
         <div
           ref={menuRef}
-          className="absolute right-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  outline-none"
+          className="absolute left-15 bottom-2 mt-2 w-20 bg-white rounded-sm shadow-lg z-1  outline-none"
         >
           <button
             className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md outline-none "
@@ -262,10 +56,7 @@ function ContactActions() {
           </button>
           <button
             className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150 rounded-t-md outline-none "
-            onClick={() => {
-              console.log("Delete clicked!");
-              setInview(false);
-            }}
+            onClick={handleDeleteItem}
           >
             Delete
           </button>
@@ -317,7 +108,7 @@ function ContactRow({ contact }) {
           {contact.phoneNumber}
         </td>
         <td className=" h-5 px-6 py-3 whitespace-nowrap text-center  font-medium">
-          <ContactActions />
+          <ContactActions itemId={contact.id} />
         </td>
       </tr>
       {isRowExpanded && (
@@ -350,10 +141,10 @@ function ContactRow({ contact }) {
   );
 }
 
-export default function ContactTable() {
+export default function ContactTable({contacts}) {
   return (
     <div className="shadow-lg rounded-md bg-white mt-5 md:w-full overflow-hidden">
-      <div className="max-h-[500px] overflow-y-auto w-full custom-scrollbar p-4">
+      <div className="max-h-[550px] overflow-y-auto w-full custom-scrollbar p-4">
         <table className="w-full">
           <thead className="border-b border-gray-300 text-left">
             <tr>

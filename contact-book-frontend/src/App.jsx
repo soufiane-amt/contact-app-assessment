@@ -1,18 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import ContactTable from "./components/ContactTable";
-import SearchField from "./components/SearchField";
+import ContactFormModal from "./components/ContactFormModal";
 import ContactListPage from "./components/ContactListPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <ContactListPage/>
-      {/* <SearchField/>
-      <ContactTable /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ContactListPage />} />
+        <Route path="/contact" element={<ContactFormModal />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
