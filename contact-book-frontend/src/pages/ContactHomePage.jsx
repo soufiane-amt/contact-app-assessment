@@ -10,15 +10,15 @@ export default function ContactHomePage() {
   const [contacts, setContacts] = useState([]);
   const navigate = useNavigate();
 
-  const fetchContacts = useCallback(() =>{
+  const fetchContacts = useCallback(() => {
     axios.get(API_BASE_URL).then((response) => {
       setContacts(response.data);
-    })}, [])
+    });
+  }, []);
 
   useEffect(() => {
     fetchContacts();
   }, [fetchContacts]);
-
 
   const handleToggleModal = () => {
     navigate("/contact");
@@ -53,11 +53,11 @@ export default function ContactHomePage() {
             <SearchField />
           </div>
           <div className="absolute top-20 md:right-4 right-0 w-5/5 md:w-5/6 ">
-            <ContactTable contacts={contacts} fetchContacts={fetchContacts}/>
+            <ContactTable contacts={contacts} fetchContacts={fetchContacts} />
           </div>
         </div>
         <div>
-          <div className="mt-5 md:ml-5 md:static fixed bottom-4 left-[45%]">
+          <div className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4">
             <button
               className=" bg-[#5c4d95] text-white w-20 h-20 rounded-full text-4xl
              flex items-center justify-center
