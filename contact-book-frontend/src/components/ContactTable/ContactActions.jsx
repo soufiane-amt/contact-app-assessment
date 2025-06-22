@@ -30,7 +30,7 @@ export default function ContactActions({ itemId, fetchContacts }) {
 };
 
   return (
-    <div className="relative right-5 ">
+    <div className="relative right-5 md:right-15">
       <button
         className="cursor-pointer"
         onClick={() => {

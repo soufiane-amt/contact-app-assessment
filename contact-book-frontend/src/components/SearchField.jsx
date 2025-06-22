@@ -1,4 +1,22 @@
-export default function SearchField() {
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "../pages/ContactHomePage";
+
+export default function SearchField({setContacts}) {
+  const [searchItem, setSearchItem] = useState('')
+
+  useEffect (()=>{
+    const fetchedSearchedItems = async() =>{
+      const url = searchItem ? `${API_BASE_URL}?query=${encodeURIComponent(searchItem)}` : API_BASE_URL;
+      const response = await axios.get(url);
+      setContacts(response.data);
+    }
+    fetchedSearchedItems();
+  }, [searchItem, setContacts])
+
+  const handleTyping = (e) => {
+    setSearchItem (e.target.value);
+  }
   return (
     <div className="relative">
       <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
@@ -22,7 +40,9 @@ export default function SearchField() {
         <input
           className="w-full md:h-13 h-10 px-13 rounded-4xl  bg-[#9595c5] text-gray-50 outline-none"
           type="text"
+          value={searchItem}
           placeholder="Search contacts"
+          onChange={handleTyping}
         />
       </div>
     </div>

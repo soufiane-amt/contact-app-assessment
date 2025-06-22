@@ -50,7 +50,7 @@ export default function ContactHomePage() {
             </div>
           </div>
           <div className="absolute top-7 right-4 w-4/5 sm:w-2/3 md:w-5/6">
-            <SearchField />
+            <SearchField setContacts={setContacts}/>
           </div>
           <div className="absolute top-20 md:right-4 right-0 w-5/5 md:w-5/6 ">
             <ContactTable contacts={contacts} fetchContacts={fetchContacts} />
