@@ -49,7 +49,7 @@ public class ContactService {
         contactRepository.deleteById(id);
     }
 
-    // public List<Contact> searchContacts(String query) {
-    // }
-
+    public List<Contact> searchContacts(String query) {
+        return this.contactRepository.searchContacts(query);
+     }
 }

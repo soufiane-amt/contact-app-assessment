@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/contacts")
@@ -21,8 +22,18 @@ public class ContactController {
     }
 
     @GetMapping
-    public List<Contact> getAllContacts() {
+    public List<Contact> getAllContacts(@RequestParam(required = false) String query) {
+        if (query != null && !query.trim().isEmpty()) {
+            return contactService.searchContacts(query);
+        }
         return contactService.getAllContacts();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Contact> getContactById(@PathVariable Long id) {
+        Optional<Contact> contact = contactService.getContactById(id);
+        return contact.map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
