@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository()
+@Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
+
     @Query("SELECT c FROM Contact c WHERE " +
             "LOWER(c.firstName) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
             "LOWER(c.lastName) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
             "LOWER(c.email) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-            "LOWER(c.phoneNumber) LIKE LOWER(CONCAT('%', :query, '%')) OR " +
-            "LOWER(c.address) LIKE LOWER(CONCAT('%', :query, '%'))")
+            "LOWER(c.phoneNumber) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<Contact> searchContacts(@Param("query") String query);
 
 }

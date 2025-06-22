@@ -22,12 +22,10 @@ public class ContactController {
     }
 
     @GetMapping
-    public List<Contact> getAllContacts() {
-        return contactService.getAllContacts();
-    }
-
-    @GetMapping("/{id}")
-    public List<Contact> getAllContacts() {
+    public List<Contact> getAllContacts(@RequestParam(required = false) String query) {
+        if (query != null && !query.trim().isEmpty()) {
+            return contactService.searchContacts(query);
+        }
         return contactService.getAllContacts();
     }
 
