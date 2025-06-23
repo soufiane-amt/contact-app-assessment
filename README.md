@@ -185,3 +185,18 @@ docker compose down
 | DELETE | `/api/contacts/{id}` | Delete contact by ID               |
 
 ---
+
+## Screenshots
+To give a quick visual overview of the application, here are some screenshots:
+
+### Contact List Page (Desktop View):
+![Desktop view](images/desktop.png)
+
+### Add New Contact Modal:
+
+![New Contact Modal](images/adding.png)
+
+### Contact List Page (Mobile View):
+
+![Mobile View](images/mobile.png)
+---
