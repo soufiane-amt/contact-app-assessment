@@ -4,7 +4,8 @@ import SearchField from "../components/SearchField";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export const API_BASE_URL = "http://localhost:8080/api/contacts";
+
+export const API_BASE_URL =  "http://localhost:8080/api/contacts";
 
 export default function ContactHomePage() {
   const [contacts, setContacts] = useState([]);
