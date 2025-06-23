@@ -4,8 +4,7 @@ import SearchField from "../components/SearchField";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
-export const API_BASE_URL =  "http://localhost:8080/api/contacts";
+export const API_BASE_URL = "http://localhost:8080/api/contacts";
 
 export default function ContactHomePage() {
   const [contacts, setContacts] = useState([]);
@@ -47,18 +46,23 @@ export default function ContactHomePage() {
               </svg>
             </div>
             <div className="hidden lg:flex">
-              <p className="text-gray-200 font-medium text-lg font-cursive">Contacts</p>
+              <p className="text-gray-200 font-medium text-lg font-cursive">
+                Contacts
+              </p>
             </div>
           </div>
           <div className="absolute top-7 right-4 w-4/5 sm:w-2/3 md:w-5/6">
-            <SearchField setContacts={setContacts}/>
+            <SearchField setContacts={setContacts} />
           </div>
           <div className="absolute top-20 md:right-4 right-0 w-5/5 md:w-5/6 ">
             <ContactTable contacts={contacts} fetchContacts={fetchContacts} />
           </div>
         </div>
         <div>
-          <div className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4  z-[5]">
+          <div
+            className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4"
+            style="width: fit-content;"
+          >
             <button
               className=" bg-[#5c4d95] text-white w-20 h-20 rounded-full text-4xl
              flex items-center justify-center

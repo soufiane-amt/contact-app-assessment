@@ -149,7 +149,7 @@ mvn clean package
 
 ### 🐳 Running with Docker Compose
 
-From backend directory (where `docker-compose.yml` is):
+From root directory (where `docker-compose.yml` is):
 
 ```bash
 docker compose up -d --build
