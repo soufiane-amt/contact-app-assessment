@@ -58,7 +58,7 @@ export default function ContactHomePage() {
           </div>
         </div>
         <div>
-          <div className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4">
+          <div className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4  z-[5]">
             <button
               className=" bg-[#5c4d95] text-white w-20 h-20 rounded-full text-4xl
              flex items-center justify-center

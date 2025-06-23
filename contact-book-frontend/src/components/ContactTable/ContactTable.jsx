@@ -2,7 +2,7 @@ import ContactRow from "./ContactRow";
 
 export default function ContactTable({ contacts, fetchContacts }) {
   return (
-    <div className="shadow-lg rounded-md bg-white mt-5 md:w-full overflow-hidden">
+    <div className="shadow-lg rounded-md bg-white mt-5 md:w-full overflow-hidden z-[50]">
       <div className="max-h-[550px] overflow-y-auto w-full custom-scrollbar p-4">
         <table className="w-full">
           <thead className="border-b border-gray-300 text-left">
