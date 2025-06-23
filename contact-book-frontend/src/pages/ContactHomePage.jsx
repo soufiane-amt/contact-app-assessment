@@ -58,11 +58,8 @@ export default function ContactHomePage() {
             <ContactTable contacts={contacts} fetchContacts={fetchContacts} />
           </div>
         </div>
-        <div>
-          <div
-            className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4"
-            style="width: fit-content;"
-          >
+        <div className="w-fit">
+          <div className="md:mt-5 md:ml-5 md:static md:left-[45%] md:translate-x-0 fixed bottom-0 left-1/2 -translate-x-1/2 p-4">
             <button
               className=" bg-[#5c4d95] text-white w-20 h-20 rounded-full text-4xl
              flex items-center justify-center
