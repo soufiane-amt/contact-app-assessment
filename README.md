@@ -15,10 +15,8 @@ A **full-stack CRUD** application for managing contacts, developed with **Spring
   * [Prerequisites](#prerequisites)
   * [Database Setup (Docker Compose)](#database-setup-docker-compose)
   * [Backend Setup](#backend-setup)
-  * [Frontend Setup](#frontend-setup)
   * [Running with Docker Compose](#running-with-docker-compose)
 * [API Endpoints](#api-endpoints)
-* [Important Notes](#important-notes)
 
 ---
 
