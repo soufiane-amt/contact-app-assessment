@@ -47,7 +47,7 @@ export default function ContactHomePage() {
               </svg>
             </div>
             <div className="hidden lg:flex">
-              <p className="text-gray-200 font-medium text-lg">Contacts</p>
+              <p className="text-gray-200 font-medium text-lg font-cursive">Contacts</p>
             </div>
           </div>
           <div className="absolute top-7 right-4 w-4/5 sm:w-2/3 md:w-5/6">
