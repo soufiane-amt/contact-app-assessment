@@ -1,7 +1,3 @@
-Here’s a clean and professional `README.md` layout for your **Contact Management Application**:
-
----
-
 # 📇 Contact Management Application
 
 A **full-stack CRUD** application for managing contacts, developed with **Spring Boot** (backend), **React.js** (frontend), and **PostgreSQL** (database), all containerized using **Docker Compose**. This project emphasizes clean code, modular architecture, and version control best practices.
@@ -43,7 +39,7 @@ This application allows users to **create**, **view**, **update**, and **delete*
 
 * **RESTful API**: CRUD operations for contacts
 * **Data Persistence**: PostgreSQL with Spring Data JPA (Hibernate)
-* **Entity Model**: `Contact` with fields: `firstName`, `lastName`, `email`, `phoneNumber`, `address`
+* **Entity Model**: `Contact` with fields: `firstName`, `lastName`, `email`, `phoneNumber`
 * **CRUD Endpoints**:
 
   * `GET /api/contacts`
@@ -102,18 +98,20 @@ This application allows users to **create**, **view**, **update**, and **delete*
 │   │   ├── model/           # Contact.java
 │   │   ├── repository/      # ContactRepository
 │   │   └── service/         # ContactService
-│   ├── src/main/resources/  # application.properties
-│   ├── src/test/java/       # Unit tests
+│   ├── src/main/resources/  # application.properties and schema.sql
 │   ├── pom.xml
 │   └── Dockerfile
-├── contact-homepage-react/
+├── contact-book-frontend/
 │   ├── public/
 │   ├── src/
 │   │   ├── assets/
 │   │   ├── components/
 │   │   ├── pages/
 │   │   │   └── ContactListPage.jsx
+│   │   └── App.jsx
+│   │   └── App.css
 │   │   └── main.jsx
+│   │   └── index.css
 │   ├── package.json
 │   ├── vite.config.js
 │   ├── tailwind.config.js
@@ -136,23 +134,6 @@ Make sure you have:
 
 ---
 
-### 🐘 Database Setup (Docker Compose)
-
-From the backend root directory:
-
-```bash
-cd contact-book-backend
-```
-
-Ensure `docker-compose.yml` includes:
-
-```yaml
-POSTGRES_DB: contact_db
-POSTGRES_USER: postgres
-POSTGRES_PASSWORD: testpass123
-```
-
----
 
 ### 🧰 Backend Setup
 
@@ -161,36 +142,17 @@ cd contact-book-backend
 mvn clean package
 ```
 
-> This builds `target/contact-book-backend-0.0.1-SNAPSHOT.jar` for Docker.
+> This builds `target/contact-backend.jar` () for Docker.
 
 ---
 
-### 🌐 Frontend Setup
-
-```bash
-cd contact-homepage-react
-```
-
-Ensure you have a `.dockerignore`:
-
-```dockerignore
-node_modules/
-dist/
-.git/
-.vscode/
-npm-debug.log*
-.env*
-.DS_Store
-```
-
----
 
 ### 🐳 Running with Docker Compose
 
 From backend directory (where `docker-compose.yml` is):
 
 ```bash
-docker compose up -d --build --force-recreate
+docker compose up -d --build
 ```
 
 Check containers:
@@ -221,14 +183,5 @@ docker compose down
 | POST   | `/api/contacts`      | Create new contact                 |
 | PUT    | `/api/contacts/{id}` | Update contact by ID               |
 | DELETE | `/api/contacts/{id}` | Delete contact by ID               |
-
----
-
-## ⚠️ Important Notes
-
-* **React API Base URL**: Uses `VITE_REACT_APP_API_BASE_URL` from `docker-compose.yml` for backend access.
-* **CORS**: Configured in `WebConfig.java` for cross-origin requests.
-* **Database Schema**: `spring.jpa.hibernate.ddl-auto=update` auto-applies schema changes (dev only).
-* **Passwords**: Avoid hardcoding in production; use `.env` or Docker secrets.
 
 ---

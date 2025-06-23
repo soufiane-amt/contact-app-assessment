@@ -40,8 +40,8 @@
     </dependencies>
 
     <build>
+        <finalName>contact-backend</finalName> <!-- CUSTOM JAR NAME -->
         <plugins>
-            <!-- ENSURE THIS SPRING-BOOT-MAVEN-PLUGIN IS PRESENT AND CORRECT -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
